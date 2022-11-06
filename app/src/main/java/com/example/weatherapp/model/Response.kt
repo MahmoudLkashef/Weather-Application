@@ -22,6 +22,9 @@ data class WeatherData(val dt:Int,val main: Main,val weather:List<Weather>,val w
 
     val dt_txt_day:String
     get() = WeatherUtil.convertDateToDay(dt_txt.split(" ").get(0))
+
+    val dt_txt_time:String
+        get()=dt_txt.split(" ").get(1)
 }
 
 @Parcelize

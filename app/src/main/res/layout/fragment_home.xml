@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="response"
+            type="com.example.weatherapp.model.Response" />
     </data>
 
     <ScrollView
@@ -35,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@{}"
+                android:text="@{(response.city.name)+` , `+response.city.country}"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -73,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
-                    android:text="@{}"
+                    android:text="@{response.list.get(0).dt_txt_date}"
                     android:textColor="#FFFFFF"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -107,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="4dp"
-                    android:text="@{}"
+                    android:text="@{response.list.get(0).weather.get(0).description}"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/img_current_weather"
@@ -118,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{}"
+                    android:text="@{response.list.get(0).main.tempString}"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold"

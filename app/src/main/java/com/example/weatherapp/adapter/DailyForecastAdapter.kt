@@ -35,7 +35,7 @@ class DailyForecastAdapter:ListAdapter<WeatherData, DailyForecastAdapter.DailyFo
             fun bind(item:WeatherData)
             {
                 daily_forecast_list_item.weatherData=item
-                
+
                 Picasso.get().load(StringBuilder("http://openweathermap.org/img/wn/")
                     .append(item.weather.get(0).icon)
                     .append("@2x.png").toString())

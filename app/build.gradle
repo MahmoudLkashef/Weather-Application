@@ -10,6 +10,10 @@ plugins {
 android {
     compileSdk 32
 
+    def localPropertiesFile = rootProject.file("local.properties")
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(localPropertiesFile))
+
     defaultConfig {
         applicationId "com.example.weatherapp"
         minSdk 21
@@ -19,11 +23,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        def localPropertiesFile = rootProject.file("local.properties")
-        def localProperties = new Properties()
-        localProperties.load(new FileInputStream(localPropertiesFile))
         buildConfigField "String", "API_KEY", localProperties['API_KEY']
-
     }
 
     //Databinding

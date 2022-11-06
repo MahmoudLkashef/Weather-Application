@@ -36,7 +36,7 @@ class HourlyWeatherAdapter : ListAdapter<WeatherData, HourlyWeatherAdapter.Hourl
             fun bind(item:WeatherData)
             {
                 hourly_weather_list_item.weatherData=item
-                
+
                 Picasso.get().load(StringBuilder("http://openweathermap.org/img/wn/")
                     .append(item.weather.get(0).icon)
                     .append("@2x.png").toString()).into(hourly_weather_list_item.imgCloudListItem)

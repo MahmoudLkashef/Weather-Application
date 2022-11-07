@@ -15,10 +15,10 @@ data class Coord(var lat:Double,var lon:Double): Parcelable
 
 @Parcelize
 data class WeatherData(val dt:Int,val main: Main,val weather:List<Weather>,val wind:Wind
-,val dt_txt:String) : Parcelable
+                       ,val dt_txt:String) : Parcelable
 {
     val dt_txt_date:String
-    get()=dt_txt.split(" ").get(0)
+        get()=dt_txt.split(" ").get(0)
 
     val dt_txt_day:String
     get() = WeatherUtil.convertDateToDay(dt_txt.split(" ").get(0))
@@ -31,12 +31,21 @@ data class WeatherData(val dt:Int,val main: Main,val weather:List<Weather>,val w
 data class Main(val temp:Double ,val pressure:Double,val humidity:Double): Parcelable
 {
     val tempString:String
-    get() = temp.toString()+"°C"
+        get() = temp.toString()+"°C"
+
+    val pressureString:String
+        get() = pressure.toString()+"SA"
+
+    val humidityString:String
+        get() = humidity.toString()+"%"
 }
 
 @Parcelize
 data class Weather(val id:Int,val main:String,val description:String,val icon:String): Parcelable
 
 @Parcelize
-data class Wind(val speed:Double,val deg:Double,val gust:Double): Parcelable
+data class Wind(val speed:Double,val deg:Double,val gust:Double): Parcelable{
+    val windString:String
+        get() = speed.toString()+"m/s"
+}
 

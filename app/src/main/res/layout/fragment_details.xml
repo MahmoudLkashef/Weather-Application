@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/city_name"
+            android:id="@+id/tv_city_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
@@ -37,7 +37,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView" />
 
         <TextView
-            android:id="@+id/details_date_time"
+            android:id="@+id/tv_details_date_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -45,20 +45,20 @@
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/city_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_city_name" />
 
         <ImageView
-            android:id="@+id/details_weather_img"
+            android:id="@+id/img_details_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:src="@drawable/cloud"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/details_date_time" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_details_date_time" />
 
         <TextView
-            android:id="@+id/details_temp"
+            android:id="@+id/tv_details_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -67,10 +67,10 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/details_weather_img" />
+            app:layout_constraintTop_toBottomOf="@+id/img_details_weather" />
 
         <TextView
-            android:id="@+id/details_summ"
+            android:id="@+id/tv_details_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -80,10 +80,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/details_temp" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_details_temp" />
 
         <TextView
-            android:id="@+id/details_current_time"
+            android:id="@+id/tv_details_current_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -92,17 +92,17 @@
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/details_summ" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_details_description" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/img_details_refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:src="@drawable/refresh"
-            app:layout_constraintBottom_toBottomOf="@+id/details_current_time"
-            app:layout_constraintStart_toEndOf="@+id/details_current_time"
-            app:layout_constraintTop_toTopOf="@+id/details_current_time" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_details_current_time"
+            app:layout_constraintStart_toEndOf="@+id/tv_details_current_time"
+            app:layout_constraintTop_toTopOf="@+id/tv_details_current_time" />
 
         <TextView
             android:id="@+id/textView15"
@@ -115,7 +115,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/details_current_time" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_details_current_time" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_hourly_weather_details"
@@ -164,10 +164,10 @@
                 android:src="@drawable/humidity"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_humidity_title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/details_humidity" />
+                app:layout_constraintTop_toTopOf="@+id/tv_details_humidity" />
 
             <TextView
-                android:id="@+id/details_humidity"
+                android:id="@+id/tv_details_humidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -191,8 +191,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/details_humidity"
-                app:layout_constraintTop_toBottomOf="@+id/details_humidity"
+                app:layout_constraintStart_toStartOf="@+id/tv_details_humidity"
+                app:layout_constraintTop_toBottomOf="@+id/tv_details_humidity"
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -216,10 +216,10 @@
                 android:src="@drawable/wind"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_air_pressure_title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/details_wind" />
+                app:layout_constraintTop_toTopOf="@+id/tv_details_wind" />
 
             <TextView
-                android:id="@+id/details_wind"
+                android:id="@+id/tv_details_wind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -241,8 +241,8 @@
                 android:text="Wind"
                 android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/details_wind"
-                app:layout_constraintTop_toBottomOf="@+id/details_wind"
+                app:layout_constraintStart_toStartOf="@+id/tv_details_wind"
+                app:layout_constraintTop_toBottomOf="@+id/tv_details_wind"
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -264,10 +264,10 @@
                 android:src="@drawable/air_pressure"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_wind_title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/details_air" />
+                app:layout_constraintTop_toTopOf="@+id/tv_details_air" />
 
             <TextView
-                android:id="@+id/details_air"
+                android:id="@+id/tv_details_air"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -291,8 +291,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/details_air"
-                app:layout_constraintTop_toBottomOf="@+id/details_air"
+                app:layout_constraintStart_toStartOf="@+id/tv_details_air"
+                app:layout_constraintTop_toBottomOf="@+id/tv_details_air"
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

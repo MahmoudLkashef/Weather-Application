@@ -1,7 +1,6 @@
 package com.example.weatherapp.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,23 +8,16 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.R
-import com.example.weatherapp.adapter.DailyForecastAdapter
 import com.example.weatherapp.adapter.HourlyWeatherAdapter
 import com.example.weatherapp.databinding.FragmentDetailsBinding
-import com.example.weatherapp.model.WeatherData
 import com.example.weatherapp.utils.WeatherUtil
 
 class DetailsFragment : Fragment() {
 
-    lateinit var binding :FragmentDetailsBinding
+    lateinit var binding: FragmentDetailsBinding
     val viewModel: WeatherViewModel by activityViewModels()
     lateinit var hourlyWeatherAdapter: HourlyWeatherAdapter
-
-
 
 
     override fun onCreateView(
@@ -47,21 +39,21 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        hourlyWeatherAdapter= HourlyWeatherAdapter()
+        hourlyWeatherAdapter = HourlyWeatherAdapter()
 
-        binding.rvHourlyWeatherDetails.adapter=hourlyWeatherAdapter
-
-
-            val weatherDeatails  = viewModel.dailyData.observe(viewLifecycleOwner,
-                Observer {
-                    list ->
-                    var currentDate=list.get(0).dt_txt_date
-                    binding.response= list[0]
-                    hourlyWeatherAdapter.submitList(WeatherUtil.getCurrentDayWeather(list,currentDate))
+        binding.rvHourlyWeatherDetails.adapter = hourlyWeatherAdapter
 
 
+        viewModel.dailyData.observe(viewLifecycleOwner,
+            Observer { list ->
 
-                })
+                var currentDate = list.get(0).dt_txt_date
+
+                binding.response = list[0]
+
+                hourlyWeatherAdapter.submitList(WeatherUtil.getCurrentDayWeather(list, currentDate))
+
+            })
 
     }
 

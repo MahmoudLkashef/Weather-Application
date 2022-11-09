@@ -8,6 +8,10 @@
         <variable
             name="response"
             type="com.example.weatherapp.model.Response" />
+
+        <variable
+            name="time"
+            type="com.example.weatherapp.utils.WeatherUtil" />
     </data>
 
     <ScrollView
@@ -86,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="3.30 PM"
+                    android:text="@{time.Companion.currentTime}"
                     android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -133,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Last update 3.00 PM"
+                    android:text="@{`Last update `+time.Companion.currentTime}"
                     android:textColor="#FFFFFF"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/img_current_weather"

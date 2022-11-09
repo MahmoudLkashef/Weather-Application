@@ -73,16 +73,9 @@ class HomeFragment : Fragment() {
 
             binding.response=response
 
-            loadWeatherIcon(response.list.get(0).weather.get(0).icon)
+            WeatherUtil.loadWeatherIcon(response.list.get(0).weather.get(0).icon,binding.imgCurrentWeather)
 
         })
-    }
-
-    fun loadWeatherIcon(icon:String)
-    {
-        Picasso.get().load(StringBuilder("http://openweathermap.org/img/wn/")
-            .append(icon)
-            .append("@2x.png").toString()).into(binding.imgCurrentWeather)
     }
 
 }

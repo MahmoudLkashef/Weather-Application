@@ -53,6 +53,8 @@ class DetailsFragment : Fragment() {
 
                 hourlyWeatherAdapter.submitList(WeatherUtil.getCurrentDayWeather(list, currentDate))
 
+                WeatherUtil.loadWeatherIcon(list.get(0).weather.get(0).icon,binding.imgDetailsWeather)
+
             })
 
     }

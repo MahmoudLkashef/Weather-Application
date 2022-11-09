@@ -8,25 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.R
 import com.example.weatherapp.adapter.DailyForecastAdapter
 import com.example.weatherapp.adapter.HourlyWeatherAdapter
 import com.example.weatherapp.databinding.FragmentHomeBinding
-import com.example.weatherapp.model.Response
-import com.example.weatherapp.model.WeatherData
-import com.example.weatherapp.network.WeatherAPI
-import com.example.weatherapp.network.WeatherClient
-import com.example.weatherapp.utils.Constants
 import com.example.weatherapp.utils.WeatherUtil
 import com.squareup.picasso.Picasso
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.create
 
 
 class HomeFragment : Fragment() {
@@ -47,9 +37,6 @@ class HomeFragment : Fragment() {
             container,
             false
         )
-/*
-        viewModel=ViewModelProvider(this).get(WeatherViewModel::class.java)
-*/
 
         return binding.root
     }
@@ -87,8 +74,6 @@ class HomeFragment : Fragment() {
             binding.response=response
 
             loadWeatherIcon(response.list.get(0).weather.get(0).icon)
-
-            binding.tvCurrentTime.text=WeatherUtil.getCurrentTime()
 
         })
     }

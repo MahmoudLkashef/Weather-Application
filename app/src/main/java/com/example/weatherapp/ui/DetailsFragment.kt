@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.example.weatherapp.R
 import com.example.weatherapp.adapter.HourlyWeatherAdapter
 import com.example.weatherapp.databinding.FragmentDetailsBinding
@@ -43,7 +44,9 @@ class DetailsFragment : Fragment() {
 
         binding.rvHourlyWeatherDetails.adapter = hourlyWeatherAdapter
 
-
+        binding.imgBack.setOnClickListener(View.OnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_detailsFragment_to_homeFragment)
+        })
         viewModel.dailyData.observe(viewLifecycleOwner,
             Observer { list ->
 

@@ -1,6 +1,8 @@
 package com.example.weatherapp.utils
 
+import android.widget.ImageView
 import com.example.weatherapp.model.WeatherData
+import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -46,6 +48,12 @@ class WeatherUtil {
         {
             return SimpleDateFormat("hh:mm").format(getCurrentDateTime()).toString()
 
+        }
+        fun loadWeatherIcon(icon:String,image:ImageView)
+        {
+            Picasso.get().load(StringBuilder("http://openweathermap.org/img/wn/")
+                .append(icon)
+                .append("@2x.png").toString()).into(image)
         }
     }
 

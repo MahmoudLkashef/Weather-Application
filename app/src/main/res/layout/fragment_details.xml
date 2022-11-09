@@ -16,7 +16,7 @@
         tools:context=".ui.DetailsFragment">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/img_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -33,8 +33,8 @@
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.371"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            app:layout_constraintStart_toEndOf="@+id/img_back"
+            app:layout_constraintTop_toTopOf="@+id/img_back" />
 
         <TextView
             android:id="@+id/tv_details_date_time"
@@ -49,8 +49,8 @@
 
         <ImageView
             android:id="@+id/img_details_weather"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/cloud"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +76,7 @@
             android:layout_marginTop="8dp"
             android:text="@{response.weather.get(0).description}"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -168,7 +168,7 @@
 
             <TextView
                 android:id="@+id/tv_details_humidity"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -182,7 +182,7 @@
 
             <TextView
                 android:id="@+id/tv_humidity_title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
@@ -220,7 +220,7 @@
 
             <TextView
                 android:id="@+id/tv_details_wind"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -234,13 +234,14 @@
 
             <TextView
                 android:id="@+id/tv_air_pressure_title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="Wind"
                 android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_details_wind"
                 app:layout_constraintTop_toBottomOf="@+id/tv_details_wind"
                 app:layout_constraintVertical_bias="0.0" />
@@ -268,7 +269,7 @@
 
             <TextView
                 android:id="@+id/tv_details_air"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -282,7 +283,7 @@
 
             <TextView
                 android:id="@+id/tv_wind_title"
-                android:layout_width="78dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
@@ -311,42 +312,42 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
             <ImageView
-                android:id="@+id/img_fog"
+                android:id="@+id/img_cloudiness"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/fog"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_fog_title"
+                android:src="@drawable/ic_cloudiness"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_cloudiness_title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_fog" />
+                app:layout_constraintTop_toTopOf="@+id/tv_cloudiness" />
 
             <TextView
-                android:id="@+id/tv_fog"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_cloudiness"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:text="86%"
+                android:text="@{response.clouds.allString}"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/img_fog"
+                app:layout_constraintStart_toEndOf="@+id/img_cloudiness"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_fog_title"
-                android:layout_width="78dp"
+                android:id="@+id/tv_cloudiness_title"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="Fog"
+                android:text="Cloudiness"
                 android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tv_fog"
-                app:layout_constraintTop_toBottomOf="@+id/tv_fog"
+                app:layout_constraintStart_toStartOf="@+id/tv_cloudiness"
+                app:layout_constraintTop_toBottomOf="@+id/tv_cloudiness"
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

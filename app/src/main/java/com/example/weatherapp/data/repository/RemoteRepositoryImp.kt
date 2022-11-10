@@ -3,40 +3,26 @@ package com.example.weatherapp.data.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.room.Insert
 import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.data.network.WeatherAPI
 import com.example.weatherapp.data.network.WeatherClient
 import com.example.weatherapp.domain.model.Response
 import com.example.weatherapp.domain.repository.RemoteRepository
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
+import javax.inject.Inject
 
-class RemoteRepositoryImp():RemoteRepository {
+class RemoteRepositoryImp @Inject constructor(
+    private val weatherApi: WeatherAPI
+) : RemoteRepository {
 
-    private val TAG="RemoteRepository"
-
-
-
-    override fun getWeatherData(city: String): MutableLiveData<Response> {
-        var responseMutableLiveData = MutableLiveData<Response>()
-        val retrofit = WeatherClient.getInstance().create(WeatherAPI::class.java)
-        val result=retrofit.getCityWeather(city,BuildConfig.API_KEY,"metric")
-        result.enqueue(object : Callback<Response?> {
-            override fun onResponse(
-                call: Call<Response?>,
-                response: retrofit2.Response<Response?>
-            ) {
-
-                if(response.isSuccessful){
-                    responseMutableLiveData.value=response.body()
-                }
-            }
-
-            override fun onFailure(call: Call<Response?>, t: Throwable) {
-                Log.d(TAG, t.message.toString())
-            }
-        })
-        return responseMutableLiveData
-
+    private val TAG = "RemoteRepository"
+    override suspend fun getWeatherData(city: String): Response? = withContext(Dispatchers.IO)
+    {
+        var response=weatherApi.getCityWeather(city,BuildConfig.API_KEY,"metric")
+        Log.d(TAG,response.body().toString())
+        response.body()
     }
 }

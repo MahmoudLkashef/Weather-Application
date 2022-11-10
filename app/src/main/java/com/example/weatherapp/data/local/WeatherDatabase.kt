@@ -11,24 +11,4 @@ abstract class WeatherDatabase : RoomDatabase() {
 
     abstract val weatherDao: WeatherDao
 
-    companion object {
-
-        //When you make changes in a variable it will be immediately visible to other threads
-        @Volatile
-        private var INSTANCE: WeatherDatabase? = null
-
-        fun getDatabase(context: Context): WeatherDatabase {
-            return INSTANCE ?: synchronized(this)
-            {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    WeatherDatabase::class.java,
-                    "weather_database"
-                ).fallbackToDestructiveMigration().allowMainThreadQueries().build()
-                INSTANCE = instance
-                return instance
-            }
-
-        }
-    }
 }

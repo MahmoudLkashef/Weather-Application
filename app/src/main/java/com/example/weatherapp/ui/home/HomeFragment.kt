@@ -17,6 +17,11 @@ import com.example.weatherapp.databinding.FragmentHomeBinding
 import com.example.weatherapp.ui.WeatherViewModel
 import com.example.weatherapp.utils.WeatherUtil
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collectIndexed
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 @AndroidEntryPoint
@@ -52,9 +57,7 @@ class HomeFragment : Fragment() {
 
         binding.rvHourlyWeather.adapter=hourlyWeatherAdapter
         binding.rvDailyWeather.adapter=dailyForecastAdapter
-
-        viewModel.getWeatherData("Cairo")
-
+        
 
         dailyForecastAdapter.onitemClicked=
         {
@@ -63,20 +66,16 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
         }
 
-        viewModel.response.observe(viewLifecycleOwner, Observer {
+        GlobalScope.launch {
+            viewModel.getWeatherData("london")
+            viewModel.weatherData.collect{
+                withContext(Dispatchers.Main)
+                {
+                    binding.tvCurrentWeatherDescription.text=it.get(0).description
+                }
 
-            response->
-            var currentDate=response.list.get(0).dt_txt_date
-
-            hourlyWeatherAdapter.submitList(WeatherUtil.getCurrentDayWeather(response.list,currentDate))
-
-            dailyForecastAdapter.submitList(WeatherUtil.getNextFiveDaysWeather(response.list))
-
-            binding.response=response
-
-            WeatherUtil.loadWeatherIcon(response.list.get(0).weather.get(0).icon,binding.imgCurrentWeather)
-
-        })
+            }
+        }
     }
 
 }

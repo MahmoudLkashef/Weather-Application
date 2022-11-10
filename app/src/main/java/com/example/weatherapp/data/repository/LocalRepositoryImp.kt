@@ -10,6 +10,10 @@ class LocalRepositoryImp(private val database: WeatherDatabase) :LocalRepository
         database.weatherDao.insert(weatherData)
     }
 
+    override fun insertWeatherResponseList(responseList: List<WeatherResponse>) {
+        database.weatherDao.insertWeatherResponseList(responseList)
+    }
+
     override fun update(weatherData: WeatherResponse) {
         database.weatherDao.update(weatherData)
     }

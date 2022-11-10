@@ -7,6 +7,8 @@ interface LocalRepository {
 
     fun insert(weatherData: WeatherResponse)
 
+    fun insertWeatherResponseList(responseList:List<WeatherResponse>)
+
     fun update(weatherData: WeatherResponse)
 
     fun getAllData(): Flow<List<WeatherResponse>>

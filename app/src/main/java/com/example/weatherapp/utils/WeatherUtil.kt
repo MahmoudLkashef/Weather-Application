@@ -1,7 +1,8 @@
 package com.example.weatherapp.utils
 
+import android.util.Log
 import android.widget.ImageView
-import com.example.weatherapp.model.WeatherData
+import com.example.weatherapp.domain.model.WeatherData
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,6 +42,7 @@ class WeatherUtil {
         }
 
         private fun getCurrentDateTime(): Date {
+            Log.d("utill",Calendar.getInstance().time.toString())
             return Calendar.getInstance().time
         }
 
@@ -54,6 +56,13 @@ class WeatherUtil {
             Picasso.get().load(StringBuilder("http://openweathermap.org/img/wn/")
                 .append(icon)
                 .append("@2x.png").toString()).into(image)
+        }
+        fun getCurrentDate():String
+        {
+            val time = Calendar.getInstance().time
+            val formatter = SimpleDateFormat("yyyy-MM-dd")
+            val current = formatter.format(time)
+            return current
         }
     }
 

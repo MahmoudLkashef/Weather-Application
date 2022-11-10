@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui
+package com.example.weatherapp.ui.home
 
 import android.os.Bundle
 import android.util.Log
@@ -12,13 +12,20 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.R
-import com.example.weatherapp.adapter.DailyForecastAdapter
-import com.example.weatherapp.adapter.HourlyWeatherAdapter
+import com.example.weatherapp.ui.adapter.DailyForecastAdapter
+import com.example.weatherapp.ui.adapter.HourlyWeatherAdapter
 import com.example.weatherapp.databinding.FragmentHomeBinding
+import com.example.weatherapp.ui.WeatherViewModel
 import com.example.weatherapp.utils.WeatherUtil
-import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collectIndexed
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     val TAG="HomeFragment"
@@ -52,30 +59,24 @@ class HomeFragment : Fragment() {
         binding.rvHourlyWeather.adapter=hourlyWeatherAdapter
         binding.rvDailyWeather.adapter=dailyForecastAdapter
 
-        viewModel.getWeatherData("Cairo")
-
-
         dailyForecastAdapter.onitemClicked=
         {
-
-            viewModel.getDailyForecastData(it.dt_txt_date)
+            viewModel.getDailyForecastData(it.date)
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
         }
-
-        viewModel.response.observe(viewLifecycleOwner, Observer {
-
-            response->
-            var currentDate=response.list.get(0).dt_txt_date
-
-            hourlyWeatherAdapter.submitList(WeatherUtil.getCurrentDayWeather(response.list,currentDate))
-
-            dailyForecastAdapter.submitList(WeatherUtil.getNextFiveDaysWeather(response.list))
-
-            binding.response=response
-
-            WeatherUtil.loadWeatherIcon(response.list.get(0).weather.get(0).icon,binding.imgCurrentWeather)
-
-        })
+        GlobalScope.launch {
+            viewModel.getWeatherData("london")
+            viewModel.weatherData.collect{
+                var currentWeatherList=viewModel.getCurrentWeatherData()
+                withContext(Dispatchers.Main)
+                {
+                    hourlyWeatherAdapter.submitList(currentWeatherList)
+                    //dailyForecastAdapter.submitList()
+                    binding.weatherData=currentWeatherList.get(0)
+                    WeatherUtil.loadWeatherIcon(currentWeatherList.get(0).icon,binding.imgCurrentWeather)
+                }
+            }
+        }
     }
 
 }

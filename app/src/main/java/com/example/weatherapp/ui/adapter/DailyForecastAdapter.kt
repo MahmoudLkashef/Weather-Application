@@ -1,4 +1,4 @@
-package com.example.weatherapp.adapter
+package com.example.weatherapp.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -6,12 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.databinding.DailyForecastListItemBinding
-import com.example.weatherapp.model.WeatherData
+import com.example.weatherapp.domain.model.WeatherData
+import com.example.weatherapp.domain.model.WeatherResponse
 import com.squareup.picasso.Picasso
 
-class DailyForecastAdapter:ListAdapter<WeatherData, DailyForecastAdapter.DailyForecastViewHolder>(DiffCallback2())
+class DailyForecastAdapter:ListAdapter<WeatherResponse, DailyForecastAdapter.DailyForecastViewHolder>(DiffCallback2())
 {
-    var onitemClicked:((WeatherData)->Unit)?=null
+    var onitemClicked:((WeatherResponse)->Unit)?=null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyForecastViewHolder {
         val view =
@@ -32,12 +33,12 @@ class DailyForecastAdapter:ListAdapter<WeatherData, DailyForecastAdapter.DailyFo
     class DailyForecastViewHolder (private val daily_forecast_list_item: DailyForecastListItemBinding)
         : RecyclerView.ViewHolder(daily_forecast_list_item.root)
     {
-            fun bind(item:WeatherData)
+            fun bind(item:WeatherResponse)
             {
                 daily_forecast_list_item.weatherData=item
 
                 Picasso.get().load(StringBuilder("http://openweathermap.org/img/wn/")
-                    .append(item.weather.get(0).icon)
+                    .append(item.icon)
                     .append("@2x.png").toString())
                     .into(daily_forecast_list_item.imgCloudDailyForecast)
             }
@@ -46,12 +47,12 @@ class DailyForecastAdapter:ListAdapter<WeatherData, DailyForecastAdapter.DailyFo
 
 }
 
-class DiffCallback2 : DiffUtil.ItemCallback<WeatherData>() {
-    override fun areItemsTheSame(oldItem: WeatherData, newItem: WeatherData): Boolean {
-        return oldItem?.dt==newItem?.dt
+class DiffCallback2 : DiffUtil.ItemCallback<WeatherResponse>() {
+    override fun areItemsTheSame(oldItem: WeatherResponse, newItem: WeatherResponse): Boolean {
+        return oldItem?.id==newItem?.id
     }
 
-    override fun areContentsTheSame(oldItem: WeatherData, newItem: WeatherData): Boolean {
+    override fun areContentsTheSame(oldItem: WeatherResponse, newItem: WeatherResponse): Boolean {
         return oldItem==newItem
     }
 }

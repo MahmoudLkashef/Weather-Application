@@ -1,7 +1,6 @@
-package com.example.weatherapp.ui
+package com.example.weatherapp.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +11,15 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.R
-import com.example.weatherapp.adapter.DailyForecastAdapter
-import com.example.weatherapp.adapter.HourlyWeatherAdapter
+import com.example.weatherapp.ui.adapter.DailyForecastAdapter
+import com.example.weatherapp.ui.adapter.HourlyWeatherAdapter
 import com.example.weatherapp.databinding.FragmentHomeBinding
+import com.example.weatherapp.ui.WeatherViewModel
 import com.example.weatherapp.utils.WeatherUtil
-import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     val TAG="HomeFragment"

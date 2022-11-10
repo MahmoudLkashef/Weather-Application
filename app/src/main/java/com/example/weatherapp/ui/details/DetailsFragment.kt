@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui
+package com.example.weatherapp.ui.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,8 +10,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.example.weatherapp.R
-import com.example.weatherapp.adapter.HourlyWeatherAdapter
+import com.example.weatherapp.ui.adapter.HourlyWeatherAdapter
 import com.example.weatherapp.databinding.FragmentDetailsBinding
+import com.example.weatherapp.ui.WeatherViewModel
 import com.example.weatherapp.utils.WeatherUtil
 
 class DetailsFragment : Fragment() {

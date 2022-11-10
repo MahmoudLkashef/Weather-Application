@@ -7,7 +7,7 @@
     <data>
         <variable
             name="response"
-            type="com.example.weatherapp.model.Response" />
+            type="com.example.weatherapp.domain.model.Response" />
 
         <variable
             name="time"
@@ -17,7 +17,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.HomeFragment"
+        tools:context=".ui.home.HomeFragment"
         tools:ignore="SpeakableTextPresentCheck" >
 
         <androidx.constraintlayout.widget.ConstraintLayout

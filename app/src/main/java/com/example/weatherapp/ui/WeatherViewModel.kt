@@ -1,20 +1,24 @@
 package com.example.weatherapp.ui
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.weatherapp.model.Response
-import com.example.weatherapp.model.Weather
-import com.example.weatherapp.model.WeatherData
-import com.example.weatherapp.network.WeatherAPI
-import com.example.weatherapp.network.WeatherClient
+import com.example.weatherapp.domain.model.Response
+import com.example.weatherapp.domain.model.WeatherData
+import com.example.weatherapp.data.network.WeatherAPI
+import com.example.weatherapp.data.network.WeatherClient
+import com.example.weatherapp.data.repository.MainRepository
 import com.example.weatherapp.utils.Constants
 import com.example.weatherapp.utils.WeatherUtil
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
+import javax.inject.Inject
 
-class WeatherViewModel : ViewModel() {
+@HiltViewModel
+class WeatherViewModel @Inject constructor(private val context: Context)  : ViewModel() {
     private val TAG = "ViewModel"
 
 
@@ -37,8 +41,11 @@ class WeatherViewModel : ViewModel() {
                 response: retrofit2.Response<Response?>
             ) {
 
-                if (response.isSuccessful)
+                if (response.isSuccessful){
                     _response.value = response.body()
+                    var mainRepo=MainRepository(context)
+                    mainRepo.saveResponseToDatabase(_response.value!!)
+                }
             }
 
             override fun onFailure(call: Call<Response?>, t: Throwable) {
@@ -48,6 +55,11 @@ class WeatherViewModel : ViewModel() {
 
         })
     }
+/*   fun getData()
+    {
+        var mainRepo=MainRepository(context)
+        mainRepo.saveResponseToDatabase()
+    }*/
 
 fun getDailyForecastData(date:String ){
      var dailyList = WeatherUtil.getCurrentDayWeather(_response.value!!.list,date)

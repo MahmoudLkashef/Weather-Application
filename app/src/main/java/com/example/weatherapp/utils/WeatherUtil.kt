@@ -1,7 +1,7 @@
 package com.example.weatherapp.utils
 
 import android.widget.ImageView
-import com.example.weatherapp.model.WeatherData
+import com.example.weatherapp.domain.model.WeatherData
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*

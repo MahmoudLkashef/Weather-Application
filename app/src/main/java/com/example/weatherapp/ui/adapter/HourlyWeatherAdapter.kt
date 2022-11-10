@@ -1,17 +1,12 @@
-package com.example.weatherapp.adapter
+package com.example.weatherapp.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weatherapp.R
 import com.example.weatherapp.databinding.HourlyWeatherListItemBinding
-import com.example.weatherapp.model.WeatherData
+import com.example.weatherapp.domain.model.WeatherData
 import com.squareup.picasso.Picasso
 
 class HourlyWeatherAdapter : ListAdapter<WeatherData, HourlyWeatherAdapter.HourlyWeatherViewHolder>(

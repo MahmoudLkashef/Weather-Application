@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="response"
-            type="com.example.weatherapp.domain.model.Response" />
+            name="weatherData"
+            type="com.example.weatherapp.domain.model.WeatherResponse" />
 
         <variable
             name="time"
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@{(response.city.name)+` , `+response.city.country}"
+                android:text="@{(weatherData.city)+` , `+weatherData.country}"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
-                    android:text="@{response.list.get(0).dt_txt_date}"
+                    android:text="@{weatherData.date}"
                     android:textColor="#FFFFFF"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="4dp"
-                    android:text="@{response.list.get(0).weather.get(0).description}"
+                    android:text="@{weatherData.description}"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/img_current_weather"
@@ -124,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{response.list.get(0).main.tempString}"
+                    android:text="@{String.valueOf(weatherData.temp)+` °C`}"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold"

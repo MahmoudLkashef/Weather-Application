@@ -24,5 +24,7 @@ interface WeatherDao {
     @Query("DELETE FROM weather_table")
     suspend fun deleteAll()
 
+    @Query("select * from weather_table where date=:date")
+    suspend fun getCurrentWeatherData(date:String):List<WeatherResponse>
 
 }

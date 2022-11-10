@@ -37,12 +37,16 @@ class WeatherViewModel @Inject constructor(private val mainRepository: MainRepos
     private val _weatherData = MutableStateFlow<List<WeatherResponse>>(emptyList())
     val weatherData get() = _weatherData
 
-    lateinit var cityName: String
 
     suspend fun getWeatherData(city:String) {
         mainRepository.getDataFromApi(city)
         _weatherData.emit(mainRepository.getWeatherDataFromDatabase())
         Log.d(TAG,_weatherData.value.toString())
+    }
+
+    suspend fun getCurrentWeatherData():List<WeatherResponse>
+    {
+        return mainRepository.getCurrentWeatherData(WeatherUtil.getCurrentDate())
     }
 
     fun getDailyForecastData(date: String) {

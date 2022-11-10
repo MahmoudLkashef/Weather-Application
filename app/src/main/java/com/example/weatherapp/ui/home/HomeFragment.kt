@@ -1,6 +1,7 @@
 package com.example.weatherapp.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -57,23 +58,23 @@ class HomeFragment : Fragment() {
 
         binding.rvHourlyWeather.adapter=hourlyWeatherAdapter
         binding.rvDailyWeather.adapter=dailyForecastAdapter
-        
 
         dailyForecastAdapter.onitemClicked=
         {
-
-            viewModel.getDailyForecastData(it.dt_txt_date)
+            viewModel.getDailyForecastData(it.date)
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
         }
-
         GlobalScope.launch {
             viewModel.getWeatherData("london")
             viewModel.weatherData.collect{
+                var currentWeatherList=viewModel.getCurrentWeatherData()
                 withContext(Dispatchers.Main)
                 {
-                    binding.tvCurrentWeatherDescription.text=it.get(0).description
+                    hourlyWeatherAdapter.submitList(currentWeatherList)
+                    //dailyForecastAdapter.submitList()
+                    binding.weatherData=currentWeatherList.get(0)
+                    WeatherUtil.loadWeatherIcon(currentWeatherList.get(0).icon,binding.imgCurrentWeather)
                 }
-
             }
         }
     }

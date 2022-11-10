@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.databinding.HourlyWeatherListItemBinding
 import com.example.weatherapp.domain.model.WeatherData
+import com.example.weatherapp.domain.model.WeatherResponse
 import com.squareup.picasso.Picasso
 
-class HourlyWeatherAdapter : ListAdapter<WeatherData, HourlyWeatherAdapter.HourlyWeatherViewHolder>(
+class HourlyWeatherAdapter : ListAdapter<WeatherResponse, HourlyWeatherAdapter.HourlyWeatherViewHolder>(
     DiffCallback()
 ){
 
@@ -28,24 +29,24 @@ class HourlyWeatherAdapter : ListAdapter<WeatherData, HourlyWeatherAdapter.Hourl
     class HourlyWeatherViewHolder(private val hourly_weather_list_item: HourlyWeatherListItemBinding)
         : RecyclerView.ViewHolder(hourly_weather_list_item.root) {
 
-            fun bind(item:WeatherData)
+            fun bind(item:WeatherResponse)
             {
                 hourly_weather_list_item.weatherData=item
 
                 Picasso.get().load(StringBuilder("http://openweathermap.org/img/wn/")
-                    .append(item.weather.get(0).icon)
+                    .append(item.icon)
                     .append("@2x.png").toString()).into(hourly_weather_list_item.imgCloudListItem)
             }
     }
 
 }
 
-class DiffCallback : DiffUtil.ItemCallback<WeatherData>() {
-    override fun areItemsTheSame(oldItem: WeatherData, newItem: WeatherData): Boolean {
-        return oldItem?.dt==newItem?.dt
+class DiffCallback : DiffUtil.ItemCallback<WeatherResponse>() {
+    override fun areItemsTheSame(oldItem: WeatherResponse, newItem: WeatherResponse): Boolean {
+        return oldItem?.id==newItem?.id
     }
 
-    override fun areContentsTheSame(oldItem: WeatherData, newItem: WeatherData): Boolean {
+    override fun areContentsTheSame(oldItem: WeatherResponse, newItem: WeatherResponse): Boolean {
         return oldItem==newItem
     }
 

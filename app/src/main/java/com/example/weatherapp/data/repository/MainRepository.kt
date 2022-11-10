@@ -23,4 +23,9 @@ class MainRepository @Inject constructor(
     suspend fun getWeatherDataFromDatabase():List<WeatherResponse>{
         return localRepository.getAllData()
     }
+
+    suspend fun getCurrentWeatherData(date:String):List<WeatherResponse>
+    {
+        return localRepository.getCurrentWeatherData(date)
+    }
 }

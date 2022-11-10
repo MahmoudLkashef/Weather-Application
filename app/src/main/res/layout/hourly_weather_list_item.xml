@@ -6,7 +6,7 @@
     <data>
         <variable
             name="weatherData"
-            type="com.example.weatherapp.domain.model.WeatherData" />
+            type="com.example.weatherapp.domain.model.WeatherResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@{weatherData.main.tempString}"
+            android:text="@{String.valueOf(weatherData.temp)+` °C`}"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="@{weatherData.dt_txt_time}"
+            android:text="@{weatherData.time}"
             android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -14,6 +14,8 @@ import com.example.weatherapp.ui.adapter.HourlyWeatherAdapter
 import com.example.weatherapp.databinding.FragmentDetailsBinding
 import com.example.weatherapp.ui.WeatherViewModel
 import com.example.weatherapp.utils.WeatherUtil
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class DetailsFragment : Fragment() {
 
@@ -48,7 +50,7 @@ class DetailsFragment : Fragment() {
         binding.imgBack.setOnClickListener(View.OnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_detailsFragment_to_homeFragment)
         })
-        viewModel.dailyData.observe(viewLifecycleOwner,
+/*        viewModel.dailyData.observe(viewLifecycleOwner,
             Observer { list ->
 
                 var currentDate = list.get(0).dt_txt_date
@@ -59,7 +61,10 @@ class DetailsFragment : Fragment() {
 
                 WeatherUtil.loadWeatherIcon(list.get(0).weather.get(0).icon,binding.imgDetailsWeather)
 
-            })
+            })*/
+        GlobalScope.launch {
+            viewModel
+        }
 
     }
 

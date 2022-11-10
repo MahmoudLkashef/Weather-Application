@@ -26,4 +26,8 @@ class LocalRepositoryImp @Inject constructor(private val database: WeatherDataba
     override suspend fun getAllData(): List<WeatherResponse> {
         return database.weatherDao.getAllData()
     }
+
+    override suspend fun getCurrentWeatherData(date: String): List<WeatherResponse> {
+        return database.weatherDao.getCurrentWeatherData(date)
+    }
 }

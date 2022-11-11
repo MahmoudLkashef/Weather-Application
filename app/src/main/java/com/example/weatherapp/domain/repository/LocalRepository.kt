@@ -16,4 +16,6 @@ interface LocalRepository {
     suspend fun getAllData(): List<WeatherResponse>
 
     suspend fun getCurrentWeatherData(date:String):List<WeatherResponse>
+
+    suspend fun deleteAll()
 }

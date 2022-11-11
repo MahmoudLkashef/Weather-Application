@@ -1,5 +1,6 @@
 package com.example.weatherapp.data.mappers
 
+import android.util.Log
 import com.example.weatherapp.domain.model.Response
 import com.example.weatherapp.domain.model.WeatherResponse
 
@@ -37,6 +38,7 @@ class WeatherMappers {
                 )
                 weatherResponseList.add(weatherResponse)
             }
+            Log.d("mapperr",response.list.size.toString())
             return weatherResponseList
         }
     }

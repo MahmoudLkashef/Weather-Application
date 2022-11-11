@@ -1,5 +1,6 @@
 package com.example.weatherapp.data.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.weatherapp.data.local.WeatherDatabase
 import com.example.weatherapp.domain.model.WeatherResponse
@@ -9,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
+private val TAG="LocalRepository"
 class LocalRepositoryImp @Inject constructor(private val database: WeatherDatabase) :LocalRepository{
 
     override suspend fun insert(weatherData: WeatherResponse) {
@@ -29,5 +31,9 @@ class LocalRepositoryImp @Inject constructor(private val database: WeatherDataba
 
     override suspend fun getCurrentWeatherData(date: String): List<WeatherResponse> {
         return database.weatherDao.getCurrentWeatherData(date)
+    }
+
+    override suspend fun deleteAll() {
+        return database.weatherDao.deleteAll()
     }
 }

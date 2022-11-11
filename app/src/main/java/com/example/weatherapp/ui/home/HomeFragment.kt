@@ -65,13 +65,14 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
         }
         GlobalScope.launch {
-            viewModel.getWeatherData("london")
+            viewModel.getWeatherData("Egypt")
             viewModel.weatherData.collect{
                 var currentWeatherList=viewModel.getCurrentWeatherData()
+                var nextFiveDaysList=viewModel.getNextFiveDaysData()
                 withContext(Dispatchers.Main)
                 {
                     hourlyWeatherAdapter.submitList(currentWeatherList)
-                    //dailyForecastAdapter.submitList()
+                    dailyForecastAdapter.submitList(nextFiveDaysList)
                     binding.weatherData=currentWeatherList.get(0)
                     WeatherUtil.loadWeatherIcon(currentWeatherList.get(0).icon,binding.imgCurrentWeather)
                 }

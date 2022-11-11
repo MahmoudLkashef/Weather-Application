@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
         }
         GlobalScope.launch {
-            viewModel.getWeatherData("Egypt")
+            viewModel.getWeatherData("cairo")
             viewModel.weatherData.collect{
                 var currentWeatherList=viewModel.getCurrentWeatherData()
                 var nextFiveDaysList=viewModel.getNextFiveDaysData()

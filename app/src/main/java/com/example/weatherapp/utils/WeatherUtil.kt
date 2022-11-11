@@ -3,6 +3,7 @@ package com.example.weatherapp.utils
 import android.util.Log
 import android.widget.ImageView
 import com.example.weatherapp.domain.model.WeatherData
+import com.example.weatherapp.domain.model.WeatherResponse
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*

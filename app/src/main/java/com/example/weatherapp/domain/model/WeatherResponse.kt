@@ -1,10 +1,11 @@
 package com.example.weatherapp.domain.model
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.weatherapp.utils.WeatherUtil
 
-@Entity(tableName = "weather_table")
+@Entity(tableName = "weather_table", indices = arrayOf(Index(value = ["date","time"], unique = true)))
 data class WeatherResponse(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,

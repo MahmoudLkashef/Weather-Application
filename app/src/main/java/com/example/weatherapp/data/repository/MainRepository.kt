@@ -16,7 +16,7 @@ class MainRepository @Inject constructor(
     suspend fun getDataFromApi(city: String) {
         val response = remoteRepository.getWeatherData(city)
         val responseList = WeatherMappers.convertResponseToWeatherResponse(response!!)
-        Log.d(TAG, responseList.toString())
+        localRepository.deleteAll()
         localRepository.insertWeatherResponseList(responseList)
     }
 

@@ -9,18 +9,20 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.R
 import com.example.weatherapp.ui.adapter.HourlyWeatherAdapter
 import com.example.weatherapp.databinding.FragmentDetailsBinding
 import com.example.weatherapp.ui.WeatherViewModel
 import com.example.weatherapp.utils.WeatherUtil
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class DetailsFragment : Fragment() {
 
     lateinit var binding: FragmentDetailsBinding
-    val viewModel: WeatherViewModel by activityViewModels()
+    private val viewModel: WeatherViewModel by activityViewModels()
     lateinit var hourlyWeatherAdapter: HourlyWeatherAdapter
 
 
@@ -44,12 +46,12 @@ class DetailsFragment : Fragment() {
 
 
         hourlyWeatherAdapter = HourlyWeatherAdapter()
-
+        binding.rvHourlyWeatherDetails.layoutManager= LinearLayoutManager(context)
         binding.rvHourlyWeatherDetails.adapter = hourlyWeatherAdapter
 
-        binding.imgBack.setOnClickListener(View.OnClickListener {
+        binding.imgBack.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_detailsFragment_to_homeFragment)
-        })
+        }
 /*        viewModel.dailyData.observe(viewLifecycleOwner,
             Observer { list ->
 

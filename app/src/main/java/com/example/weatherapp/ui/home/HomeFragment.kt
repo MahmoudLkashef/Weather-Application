@@ -1,12 +1,14 @@
 package com.example.weatherapp.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.R
@@ -18,6 +20,7 @@ import com.example.weatherapp.utils.WeatherUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -27,7 +30,7 @@ class HomeFragment : Fragment() {
 
     val TAG="HomeFragment"
     lateinit var binding:FragmentHomeBinding
-     val viewModel: WeatherViewModel by activityViewModels()
+     private val viewModel: WeatherViewModel by activityViewModels()
     lateinit var hourlyWeatherAdapter: HourlyWeatherAdapter
     lateinit var dailyForecastAdapter: DailyForecastAdapter
     override fun onCreateView(
@@ -62,13 +65,14 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
         }
         GlobalScope.launch {
-            viewModel.getWeatherData("london")
+            viewModel.getWeatherData("cairo")
             viewModel.weatherData.collect{
                 var currentWeatherList=viewModel.getCurrentWeatherData()
+                var nextFiveDaysList=viewModel.getNextFiveDaysData()
                 withContext(Dispatchers.Main)
                 {
                     hourlyWeatherAdapter.submitList(currentWeatherList)
-                    //dailyForecastAdapter.submitList()
+                    dailyForecastAdapter.submitList(nextFiveDaysList)
                     binding.weatherData=currentWeatherList.get(0)
                     WeatherUtil.loadWeatherIcon(currentWeatherList.get(0).icon,binding.imgCurrentWeather)
                 }

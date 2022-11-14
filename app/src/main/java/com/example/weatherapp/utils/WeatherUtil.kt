@@ -22,13 +22,14 @@ class WeatherUtil {
             return currentDayList
         }
 
-        fun getNextFiveDaysWeather(list: List<WeatherData>):List<WeatherData>
+        fun getNextFiveDaysWeather(list: List<WeatherResponse>):List<WeatherResponse>
         {
-            val currentDate=list.get(0).dt_txt.split(" ").get(0)
-            var map= mutableMapOf<String, WeatherData>()
+            Log.d("utill",list.size.toString())
+            val currentDate=list.get(0).date
+            var map= mutableMapOf<String, WeatherResponse>()
             for(i in list.indices)
             {
-                var date=list.get(i).dt_txt.split(" ").get(0)
+                var date=list.get(i).date
                 if(!map.containsKey(date)) map.put(date,list.get(i))
             }
             map.remove(currentDate)
